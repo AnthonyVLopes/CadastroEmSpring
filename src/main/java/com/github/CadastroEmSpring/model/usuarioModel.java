@@ -2,6 +2,8 @@ package com.github.CadastroEmSpring.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_usuario")
 public class usuarioModel {
@@ -10,10 +12,12 @@ public class usuarioModel {
     private Long id;
 
     private String nome;
-
     private String email;
-
     private int idade;
+    //Um cliente pode ter varios veiculos alugados
+    @ManyToOne
+    @JoinColumn(name = "id_carroCliente") // Representação de uma PK por assim dizer
+    private List<carroModel> carros;
 
     public usuarioModel() {
     }
