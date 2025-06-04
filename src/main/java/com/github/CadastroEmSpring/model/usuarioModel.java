@@ -2,6 +2,7 @@ package com.github.CadastroEmSpring.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,15 +10,15 @@ import java.util.List;
 public class usuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Long id;
 
     private String nome;
+    @Column(unique = true)
     private String email;
     private int idade;
-    //Um cliente pode ter varios veiculos alugados
-    @ManyToOne
-    @JoinColumn(name = "id_carroCliente") // Representação de uma PK por assim dizer
-    private List<carroModel> carros;
+    @OneToMany(mappedBy = "cliente")
+    private List<carroModel> carros = new ArrayList<>();
 
     public usuarioModel() {
     }
