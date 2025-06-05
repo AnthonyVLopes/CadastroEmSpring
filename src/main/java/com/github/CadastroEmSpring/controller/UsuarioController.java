@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class usuarioController {
+public class UsuarioController {
 
     @GetMapping("/home")
     public String homepage(){

@@ -10,20 +10,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class carroModel {
+public class CarroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carro")
     private Long id;
+    @Column(name = "modelo")
     private String modelo;
+    @Column(name = "ano_fabricacao")
     private String ano;
-    @Column(unique = true)
+    @Column(unique = true, name = "placa")
     private String placa;
     private String categoria;
 
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private usuarioModel clientes;
+    @JoinColumn(name = "id_cliente")
+    private UsuarioModel cliente;
 
 }
