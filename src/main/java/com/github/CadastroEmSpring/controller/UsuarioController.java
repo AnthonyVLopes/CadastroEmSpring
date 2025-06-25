@@ -1,38 +1,54 @@
 package com.github.CadastroEmSpring.controller;
 
+import com.github.CadastroEmSpring.model.UsuarioModel;
+import com.github.CadastroEmSpring.service.UsuarioService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping
+@RequestMapping("/usuario")
 public class UsuarioController {
+
+    private UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     @GetMapping("/home")
     public String homepage() {
         return "Seja bem vindo";
     }
 
-    //Create
     @PostMapping("/adicionarusuario")
     public String adicionarUsuario() {
         return "Usuario Adicionado";
     }
 
     @GetMapping("/todos")
-    public String listarUsuarios() {
-        return "Todos os Usuarios Foram Retornados";
+    public List<UsuarioModel> listarUsuarios() {
+        return usuarioService.listarUser();
+    }
+    //REVER ESSE CONTROLLER
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<UsuarioModel> listarUsuariosPorId(@PathVariable Long id) {
+        return usuarioService.listarUserPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/todosId")
-    public String listarUsuariosId() {
-        return "Todos os ID dos Usuarios Foram Retornados";
-    }
 
     @PutMapping("/alterar")
     public String alterarUsuario() {
         return "Usuario Alterado";
     }
+
     @DeleteMapping("/DeletarID")
-    public String deletarUsuarioPorId(){
+    public String deletarUsuarioPorId() {
         return "Usuario Deletado";
     }
 }
