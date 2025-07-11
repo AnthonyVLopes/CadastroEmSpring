@@ -1,5 +1,6 @@
 package com.github.CadastroEmSpring.controller;
 
+import com.github.CadastroEmSpring.dto.UsuarioDTO;
 import com.github.CadastroEmSpring.model.UsuarioModel;
 import com.github.CadastroEmSpring.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/criar")
-    public UsuarioModel adicionarUsuario(@RequestBody UsuarioModel usuarioModel) {
-        return usuarioService.criarUsuario(usuarioModel);
+    public UsuarioDTO adicionarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.criarUsuario(usuarioDTO);
     }
 
     @GetMapping("/todos")

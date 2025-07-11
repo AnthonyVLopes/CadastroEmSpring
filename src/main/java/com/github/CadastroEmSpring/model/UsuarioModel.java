@@ -19,14 +19,20 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id;
+
     @Column(name = "nome")
     private String nome;
+
     @Column(unique = true, name = "email")
     private String email;
+
     @Column(name = "idade")
     private int idade;
+
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private List<CarroModel> Carros ;
 
+    @Column(name = "genero")
+    private String genero;
 }
